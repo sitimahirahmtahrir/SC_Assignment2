@@ -1,0 +1,27 @@
+# Exclude Jenkins workspace files
+/workspace/
+
+# Exclude temporary files and directories
+.tmp/
+*.tmp
+*.temp
+
+# Exclude source code version control directories
+.git/
+.svn/
+
+# Exclude build artifacts and dependencies
+node_modules/
+target/
+dist/
+bin/
+
+# Exclude editor and IDE files
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Exclude system and temporary files
+.DS_Store
+Thumbs.db

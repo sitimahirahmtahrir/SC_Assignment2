@@ -1,0 +1,116 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Checkout') {
+            steps {
+                checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'b5804654-7184-42e2-ae01-e5d29fcdbb92', url: 'https://github.com/munshyn/SC_Assignment2.git']])
+            }
+            post {
+                always {
+                    jiraComment body: 'Checkout stage completed', issueKey: 'OPS-2'
+                }
+                failure {
+                    jiraComment body: 'Checkout stage failed', issueKey: 'OPS-2'
+                }
+            }
+        }
+        
+        stage('Build Docker Image') {
+            steps {
+                script {
+                    try {
+                        bat 'docker build -t opspanzu .'
+                    } catch (Exception e) {
+                        jiraComment body: 'Build Docker Image stage failed', issueKey: 'OPS-2'
+                        throw e
+                    }
+                }
+            }
+            post {
+                always {
+                    jiraComment body: 'Build Docker Image stage completed', issueKey: 'OPS-2'
+                }
+                failure {
+                    jiraComment body: 'Build Docker Image stage failed', issueKey: 'OPS-2'
+                }
+            }
+        }
+
+        stage('Push Docker Image') {
+            steps {
+                script {
+                    try {
+                        withDockerRegistry(credentialsId: 'docker') {
+                            bat 'docker tag opspanzu:latest husnymusharraf/opspanzu:latest'
+                            bat 'docker push husnymusharraf/opspanzu:latest'
+                        }
+                    } catch (Exception e) {
+                        jiraComment body: 'Push Docker Image stage failed', issueKey: 'OPS-2'
+                        throw e
+                    }
+                }
+            }
+            post {
+                always {
+                    jiraComment body: 'Push Docker Image stage completed', issueKey: 'OPS-2'
+                }
+                failure {
+                    jiraComment body: 'Push Docker Image stage failed', issueKey: 'OPS-2'
+                }
+            }
+        }
+
+        stage('SonarQube Analysis') {
+    steps {
+        script {
+            try {
+                withSonarQubeEnv('SonarQube Server') {
+                    bat '"C:\\sonar-scanner-4.8.0.2856-windows\\bin\\sonar-scanner.bat" -Dsonar.projectKey=OPS'
+                }
+            } catch (Exception e) {
+                jiraComment body: 'SonarQube Analysis stage failed', issueKey: 'OPS-2'
+                throw e
+            }
+        }
+    }
+    post {
+        always {
+            jiraComment body: 'SonarQube Analysis stage completed', issueKey: 'OPS-2'
+        }
+        failure {
+            jiraComment body: 'SonarQube Analysis stage failed', issueKey: 'OPS-2'
+        }
+    }
+}
+
+
+        stage('Deploy to Kubernetes') {
+            steps {
+                script {
+                    try {
+                        withKubeConfig(caCertificate: 'C:\\Users\\Lenovo\\.minikube\\ca.crt', clusterName: 'kubernetes-dashboard', contextName: '', credentialsId: 'Kubernetes', namespace: 'kubernetes-dashboard', restrictKubeConfigAccess: false, serverUrl: 'http://127.0.0.1:63675/') {
+                            bat 'kubectl apply -f deployment.yaml'
+                            bat 'kubectl get deployment'
+                            bat 'kubectl apply -f service.yaml'
+                            bat 'kubectl get services'
+
+                        }
+                    } catch (Exception e) {
+                        jiraComment body: 'Deploy to Kubernetes stage failed', issueKey: 'OPS-2'
+                        throw e
+                    }
+
+                }
+            }
+            post {
+                always {
+                    jiraComment body: 'Deploy to Kubernetes stage completed', issueKey: 'OPS-2'
+                }
+                failure {
+                    jiraComment body: 'Deploy to Kubernetes stage failed', issueKey: 'OPS-2'
+                }
+            }
+        }
+    }
+}

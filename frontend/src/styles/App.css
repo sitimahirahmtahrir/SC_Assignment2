@@ -1,0 +1,319 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+
+html, body{
+  font-family: 'Poppins', sans-serif !important;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+
+a{
+  text-decoration: none;
+}
+
+.main-content {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.sidebar {
+  background-color: #ffffff;
+  width: 22rem;
+  display: flex;
+  flex-direction: column;
+  color: #000000;
+}
+
+.link-icon,
+.sidebar .nav-link > h4 {
+  margin: 5px 15px;
+}
+
+.sidebar .nav-link {
+  align-items: center;
+  display: flex;
+  padding: 10px;
+  margin: 5px 10px;
+  border-radius: 5px;
+  text-decoration: none;
+  color: #000000;
+}
+
+.sidebar .nav-link:hover {
+  background-color: #202020;
+  color: #ffffff;
+}
+
+.logout-button {
+  margin-top: 10px;
+}
+
+.header {
+  text-align: start;
+  color: white;
+  padding: 3vh;
+  background-color: rgb(68, 68, 68);
+  box-shadow: 6px 8px 10px grey;
+  margin-bottom: 5vh;
+}
+
+.header-center {
+  display: flex;
+  justify-content: center;
+  color: white;
+  padding: 3vh;
+  margin-bottom: 5vh;
+  background-color: rgb(68, 68, 68);
+  box-shadow: 6px 8px 10px grey;
+}
+
+.header-img {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  height: 20vh;
+  text-align: start;
+  color: white;
+  padding: 3vh;
+  margin-bottom: 5vh;
+  background-image: linear-gradient(rgba(255,255,255,0.2), rgba(255,255,255,0.3)), url("../assets/laser.svg");
+  background-size: cover;
+  background-position: 0 70%;
+  box-shadow: 6px 8px 10px grey;
+}
+
+.header h2 {
+  font-size: 4.55em;
+  font-weight: 100;
+}
+
+.header,.header-img h1 {
+  font-size: 5em;
+  font-weight: 100;
+}
+
+.utm-logo {
+  display: flex;
+  justify-content: center;
+  margin: 10px;
+}
+
+.utm-logo-start {
+  display: flex;
+  justify-content: flex-start;
+  margin: 10px;
+}
+
+.content {
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-around;
+  box-shadow: 0px 8px 10px grey;
+  width: 60vw;
+  height: auto;
+  margin: 0 auto auto auto;
+}
+
+.content-status {
+  border-radius: 10px;
+  box-shadow: 0px 8px 10px grey;
+  width: 60vw;
+  margin: 0 auto auto auto;
+  padding: 30px;
+}
+
+.greetings {
+  width: 20vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 5vh 0vw;
+}
+
+.greetings h3 {
+  font-weight: 900;
+  font-size: 50px;
+  color: grey;
+  text-shadow: 2px 2px 4px #4a4a4a;
+  padding-bottom: 2vh;
+}
+
+.login-form {
+  width: 20vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 5vh 2vw;
+}
+
+.center-form {
+  width: 60vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 5vh 7vw;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  background-color: #373737;
+  color: #fff;
+  padding: 2rem 10rem;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  font-size: 0.9em;
+}
+
+.footer-heading {
+  color: #fff;
+  font-weight: bold;
+  font-size: 2em;
+  margin-bottom: 1rem;
+}
+
+.footer-paragraph {
+  color: #ccc;
+  line-height: 1.5;
+  margin-top: 0.2rem;
+}
+
+.listing-container {
+  width: 90%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 16px;
+  margin: 0 auto auto auto;
+  height: 60vh;
+}
+
+.listing-content .listing-item td {
+  text-align: left;
+  padding: 20px 20px;
+  font-size: 18px;
+}
+
+.app-status tr td {
+  padding: 30px 10px;
+  width: 40%;
+  font-size: 25px;
+}
+
+.custom-list {
+  font-size: 18px;
+  border: none;
+  text-align: center;
+}
+
+.service-form {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+  margin: auto;
+}
+
+.content-header {
+  display: flex;
+  justify-content: flex-end;
+}
+
+@media (max-height: 100vh) {
+  .main-content {
+    min-height: 100vh;
+  }
+  
+  .footer {
+    position: static;
+  }
+}
+
+@media (max-width: 768px) {
+  
+  .main-content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .content-status {
+    border-radius: 10px;
+    box-shadow: 0px 8px 10px grey;
+    width: 80vw;
+    margin: 0 auto auto auto;
+    padding: 1rem;
+  }
+  
+  .greetings {
+    width: 20vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 5vh 0vw;
+  }
+  
+  .greetings h3 {
+    font-weight: 900;
+    font-size: 50px;
+    color: grey;
+    text-shadow: 2px 2px 4px #4a4a4a;
+    padding-bottom: 2vh;
+  }
+
+  .listing-content .listing-item td {
+    text-align: left;
+    padding: 0.9rem 0.9rem;
+    font-size: 0.9em;
+  }
+
+  .listing-content th {
+    font-size: 0.8em;
+  }
+  
+  .app-status tr td {
+    padding: 30px 10px;
+    width: 40%;
+    font-size: 25px;
+  }
+
+  .service-form {
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    margin: auto;
+  }
+  
+  .content-header {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .header h2,
+  .header-img h1 {
+    font-size: 3em;
+  }
+
+  .content {
+    width: 90vw;
+    flex-direction: column;
+    margin-bottom: 2rem;
+  }
+
+  .greetings,
+  .login-form {
+    padding: 2rem 2rem;
+    width: 100%;
+  }
+
+  .center-form {
+    width: 100%;
+    padding: 2rem;
+  }
+
+  .footer {
+    flex-direction: column;
+    padding: 2rem 1rem;
+  }
+}
+
